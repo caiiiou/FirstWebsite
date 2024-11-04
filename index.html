@@ -27,16 +27,6 @@
             object-fit: contain;
         }
 
-        .heart-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
         .controls-overlay {
             position: absolute;
             top: 20px;
@@ -65,110 +55,17 @@
         .sound-toggle:hover {
             background: rgba(0, 0, 0, 0.9);
             border-color: white;
+            transform: scale(1.05);
         }
 
-        /* Heart animation keyframes */
-        @keyframes drawHeart {
-            0% {
-                stroke-dashoffset: 1000;
-            }
-            40% {
-                stroke-dashoffset: 0;
-                fill-opacity: 0;
-            }
-            60% {
-                stroke-dashoffset: 0;
-                fill-opacity: 1;
-            }
-            100% {
-                stroke-dashoffset: 0;
-                fill-opacity: 0.3;
-            }
+        /* Sound icon styles */
+        .sound-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            30% {
-                transform: scale(1.2);
-            }
-            60% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.15);
-            }
-        }
-
-        @keyframes glow {
-            0% {
-                filter: drop-shadow(0 0 10px rgba(255,0,130,0.7)) drop-shadow(0 0 20px rgba(255,0,130,0.7));
-            }
-            50% {
-                filter: drop-shadow(0 0 30px rgba(255,105,180,1)) drop-shadow(0 0 50px rgba(255,0,130,1));
-            }
-            100% {
-                filter: drop-shadow(0 0 10px rgba(255,0,130,0.7)) drop-shadow(0 0 20px rgba(255,0,130,0.7));
-            }
-        }
-
-        .heart-path {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: drawHeart 4s ease-in-out forwards infinite,
-            pulse 1.5s ease-in-out infinite,
-            glow 3s ease-in-out infinite;
-            transform-origin: center;
-            filter: drop-shadow(0 0 15px rgba(255,0,130,0.7)) drop-shadow(0 0 25px rgba(255,0,130,0.7));
-        }
-
-        /* Particle container */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        /* Particle styling */
-        .particle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background-color: rgba(255, 0, 130, 0.8);
-            opacity: 0.7;
-            animation: float 3s linear infinite;
-            filter: drop-shadow(0 0 5px rgba(255, 0, 130, 0.7)) drop-shadow(0 0 10px rgba(255, 105, 180, 0.8));
-        }
-
-        /* Random positions for particles */
-        .particle:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
-        .particle:nth-child(2) { top: 40%; left: 60%; animation-delay: 0.5s; }
-        .particle:nth-child(3) { top: 60%; left: 40%; animation-delay: 1s; }
-        .particle:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
-        .particle:nth-child(5) { top: 50%; left: 20%; animation-delay: 2s; }
-
-        /* Particle float animation */
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: translate(-10px, -20px) scale(1.2);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate(10px, -30px) scale(1);
-                opacity: 0;
-            }
-        }
-
+        /* Mobile optimization */
         @media (max-width: 768px) {
             .video-container {
                 height: 50vh;
@@ -177,6 +74,22 @@
             .video-player {
                 max-height: 50vh;
             }
+
+            .sound-toggle {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .sound-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* Make controls more visible on light backgrounds */
+        .controls-overlay {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
         }
     </style>
 </head>
@@ -191,37 +104,11 @@
         <source src="https://i.imgur.com/TAv1xNv.mp4" type="video/mp4">
         Your browser doesn't support HTML5 video.
     </video>
-
-    <svg class="heart-overlay" viewBox="0 0 100 100">
-        <defs>
-            <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#ff3399;stop-opacity:1" />
-                <stop offset="100%" style="stop-color:#ff0066;stop-opacity:1" />
-            </linearGradient>
-        </defs>
-        <path
-                class="heart-path"
-                d="M50 85 C25 65, 10 45, 10 25 C10 10, 25 0, 40 0 C48 0, 50 10, 50 10 C50 10, 52 0, 60 0 C75 0, 90 10, 90 25 C90 45, 75 65, 50 85Z"
-                fill="url(#heartGradient)"
-                fill-opacity="0"
-                stroke="url(#heartGradient)"
-                stroke-width="2"
-        />
-    </svg>
-
-    <!-- Particle effect overlay -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
     <div class="controls-overlay">
         <button class="sound-toggle" onclick="toggleSound()">
-            <svg class="sound-icon" viewBox="0 0 24 24" width="24" height="24">
-                <path fill="currentColor" d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93l-1.41 1.41C19.1 7.79 20 9.79 20 12c0 2.21-0.9 4.21-2.34 5.66l1.41 1.41C20.88 17.26 22 14.76 22 12c0-2.76-1.12-5.26-2.93-7.07z"/>
+            <svg class="sound-icon" viewBox="0 0 24 24">
+                <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93l-1.41 1.41C19.1 7.79 20 9.79 20 12c0 2.21-0.9 4.21-2.34 5.66l1.41 1.41C20.88 17.26 22 14.76 22 12c0-2.76-1.12-5.26-2.93-7.07z"/>
+                <path d="M15.5 8.5c.84.84 1.5 2.07 1.5 3.5 0 1.43-.66 2.66-1.5 3.5l1.41 1.41C18.13 15.7 19 13.91 19 12c0-1.91-.87-3.7-2.09-4.91L15.5 8.5z"/>
             </svg>
             <span class="sound-text">Unmute</span>
         </button>
@@ -231,6 +118,7 @@
 <script>
     const videoPlayer = document.querySelector('.video-player');
     const container = document.querySelector('.video-container');
+    const soundButton = document.querySelector('.sound-toggle');
     const soundText = document.querySelector('.sound-text');
 
     function adjustVideoSize() {
@@ -262,17 +150,37 @@
         }
     }
 
+    // Initial setup
     videoPlayer.addEventListener('loadedmetadata', adjustVideoSize);
 
+    // Handle resize with debounce
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(adjustVideoSize, 250);
     });
 
+    // Handle orientation change
     window.addEventListener('orientationchange', () => {
         setTimeout(adjustVideoSize, 100);
     });
+
+    // Auto-hide controls after inactivity
+    let hideTimeout;
+    function showControls() {
+        const controls = document.querySelector('.controls-overlay');
+        controls.style.opacity = '1';
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+            controls.style.opacity = '0';
+        }, 3000); // Hide after 3 seconds of inactivity
+    }
+
+    container.addEventListener('mousemove', showControls);
+    container.addEventListener('touchstart', showControls);
+
+    // Show controls initially
+    showControls();
 </script>
 </body>
 </html>
