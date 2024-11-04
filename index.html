@@ -12,20 +12,19 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background: #000;
+            overflow: hidden;
         }
 
         .video-player {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
+            max-width: 100%;
+            max-height: 100vh;
             width: auto;
             height: auto;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         /* Mobile optimization */
@@ -33,11 +32,14 @@
             .video-container {
                 height: 50vh;
             }
+
+            .video-player {
+                max-height: 50vh;
+            }
         }
     </style>
 </head>
 <body>
-<img src="https://hughstephensblog.net/wp-content/uploads/2021/04/caillou-clipart.png"  alt="Description" style="max-width: 100%; height: auto;">
 <div class="video-container">
     <video
             class="video-player"
@@ -52,16 +54,27 @@
 
 <script>
     const videoPlayer = document.querySelector('.video-player');
+    const container = document.querySelector('.video-container');
 
-    // Function to adjust video sizing based on orientation
     function adjustVideoSize() {
-        const isPortrait = window.innerHeight > window.innerWidth;
-        videoPlayer.style.width = isPortrait ? '100%' : 'auto';
-        videoPlayer.style.height = isPortrait ? 'auto' : '100%';
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
+        const videoAspectRatio = videoPlayer.videoWidth / videoPlayer.videoHeight;
+        const containerAspectRatio = containerWidth / containerHeight;
+
+        if (containerAspectRatio > videoAspectRatio) {
+            // Container is wider than video
+            videoPlayer.style.height = '100%';
+            videoPlayer.style.width = 'auto';
+        } else {
+            // Container is taller than video
+            videoPlayer.style.width = '100%';
+            videoPlayer.style.height = 'auto';
+        }
     }
 
-    // Initial setup
-    adjustVideoSize();
+    // Wait for video metadata to load before initial sizing
+    videoPlayer.addEventListener('loadedmetadata', adjustVideoSize);
 
     // Handle resize with debounce
     let resizeTimeout;
@@ -73,6 +86,11 @@
     // Handle orientation change
     window.addEventListener('orientationchange', () => {
         setTimeout(adjustVideoSize, 100);
+    });
+
+    // Handle video errors
+    videoPlayer.addEventListener('error', (e) => {
+        console.error('Error loading video:', e);
     });
 </script>
 </body>
