@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,12 +30,13 @@
 
         .controls-overlay {
             position: absolute;
-            top: 20px;
+            top: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
             z-index: 10;
+            padding: 10px;
         }
 
         .sound-toggle {
@@ -48,10 +49,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-family: 'Google Sans Display', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             font-size: 16px;
             transition: all 0.3s ease;
+            letter-spacing: -0.01em;
         }
 
         .sound-toggle:hover {
@@ -85,11 +87,12 @@
             padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
-            font-family: 'Google Sans Display', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 500;
             font-size: 16px;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            letter-spacing: -0.01em;
         }
 
         .drive-button:hover {
