@@ -62,14 +62,12 @@
             transform: scale(1.05);
         }
 
-        /* Sound icon styles */
         .sound-icon {
             width: 24px;
             height: 24px;
             fill: currentColor;
         }
 
-        /* Drive button styles */
         .drive-button-container {
             width: 100%;
             display: flex;
@@ -106,7 +104,7 @@
             height: 24px;
         }
 
-        /* Mobile optimization */
+        /* Updated Mobile optimization */
         @media (max-width: 768px) {
             .video-container {
                 height: 50vh;
@@ -117,23 +115,36 @@
             }
 
             .sound-toggle {
-                padding: 8px 16px;
-                font-size: 14px;
+                padding: 12px 24px; /* Increased from 8px 16px */
+                font-size: 16px; /* Increased from 14px */
+                min-width: 120px; /* Ensure minimum touchable width */
+                min-height: 48px; /* Ensure minimum touchable height */
             }
 
             .sound-icon {
-                width: 20px;
-                height: 20px;
+                width: 24px; /* Increased from 20px */
+                height: 24px; /* Increased from 20px */
             }
 
             .drive-button {
-                padding: 8px 16px;
-                font-size: 14px;
+                padding: 14px 28px; /* Increased from 8px 16px */
+                font-size: 16px; /* Increased from 14px */
+                min-width: 160px; /* Ensure minimum touchable width */
+                min-height: 52px; /* Ensure minimum touchable height */
             }
 
             .drive-icon {
-                width: 20px;
-                height: 20px;
+                width: 24px; /* Increased from 20px */
+                height: 24px; /* Increased from 20px */
+            }
+
+            /* Add touch-friendly spacing */
+            .drive-button-container {
+                padding: 24px 0;
+            }
+
+            .controls-overlay {
+                top: 24px;
             }
         }
 
