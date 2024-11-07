@@ -77,31 +77,49 @@
         }
 
         .drive-button {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.85); /* Made slightly transparent */
+            border-radius: 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #444;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            font-size: 16px;
+            justify-content: center;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
-            letter-spacing: -0.01em;
+            cursor: pointer;
+            /* 3D effects */
+            box-shadow:
+                    0 4px 6px rgba(0, 0, 0, 0.1),
+                    0 1px 3px rgba(0, 0, 0, 0.08),
+                    0 8px 12px rgba(255, 255, 255, 0.1),
+                    inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .drive-button:hover {
-            background: white;
-            transform: scale(1.05);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow:
+                    0 7px 14px rgba(0, 0, 0, 0.15),
+                    0 3px 6px rgba(0, 0, 0, 0.1),
+                    0 12px 16px rgba(255, 255, 255, 0.1),
+                    inset 0 -3px 7px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .drive-button:active {
+            transform: translateY(1px);
+            box-shadow:
+                    0 2px 4px rgba(0, 0, 0, 0.1),
+                    0 1px 2px rgba(0, 0, 0, 0.08),
+                    inset 0 2px 3px rgba(0, 0, 0, 0.1);
         }
 
         .drive-icon {
-            width: 24px;
-            height: 24px;
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
         }
 
         /* Updated Mobile optimization with much larger icons */
@@ -123,21 +141,19 @@
             }
 
             .sound-icon {
-                width: 36px; /* 50% larger */
-                height: 36px; /* 50% larger */
+                width: 36px;
+                height: 36px;
             }
 
             .drive-button {
-                padding: 16px 32px;
-                font-size: 18px;
-                min-width: 200px;
-                min-height: 72px;
-                gap: 16px;
+                width: 150px;
+                height: 150px;
+                border-radius: 20px; /* Slightly larger radius for bigger button */
             }
 
             .drive-icon {
-                width: 42px; /* 75% larger */
-                height: 42px; /* 75% larger */
+                width: 120px;
+                height: 120px;
             }
 
             .drive-button-container {
@@ -180,8 +196,7 @@
 
 <div class="drive-button-container">
     <a href="https://drive.google.com/drive/folders/1j8Uo6E7vTdCb5wiLLu1614EfVXa61MBv?usp=sharing" class="drive-button" target="_blank">
-        <img src="https://static.wikia.nocookie.net/mylittlebrony/images/1/1a/Applejack_vector_by_hombre0-d4a3lwt.png" alt="Drive Icon" class="drive-icon">
-        Open in Drive
+        <img src="https://static.wikia.nocookie.net/mylittlebrony/images/1/1a/Applejack_vector_by_hombre0-d4a3lwt.png/" alt="Drive Icon" class="drive-icon">
     </a>
 </div>
 
